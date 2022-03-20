@@ -31,6 +31,9 @@ int main()
     aNum.push_back(8);
     aNum.push_back(2);
     aNum.push_back(1);
+    aNum.push_back(2);
+    aNum.push_back(5);
+    aNum.push_back(6);
     number *a = new number(aNum, 2, 10);
 
     vector<int> bNum;

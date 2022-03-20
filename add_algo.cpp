@@ -25,7 +25,9 @@ number add(number *x, number *y)
         a = *y;
         b = *x;
     }
-    
+
+    // int longestNonDecimalNum = (a.num.size() - a.basePower >= b.num.size() - b.basePower) ? (a.num.size() - a.basePower) : (b.num.size() - b.basePower);
+    // printf("longest non decimal num: %d\n", longestNonDecimalNum);
     //a = 137.1347
     //b = 128.12
     int basePowerDiff = a.basePower - b.basePower;
