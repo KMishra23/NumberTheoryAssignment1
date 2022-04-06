@@ -26,25 +26,29 @@ int main()
     // }
 
     vector<int> aNum;
-    aNum.push_back(2);
     aNum.push_back(1);
+    aNum.push_back(2);
     aNum.push_back(8);
-    aNum.push_back(2);
     aNum.push_back(1);
     aNum.push_back(2);
-    aNum.push_back(5);
-    aNum.push_back(6);
+
     number *a = new number(aNum, 2, 10);
 
     vector<int> bNum;
+    bNum.push_back(3);
     bNum.push_back(7);
+    bNum.push_back(1);
+    bNum.push_back(3);
     bNum.push_back(4);
-    bNum.push_back(3);
-    bNum.push_back(1);
     bNum.push_back(7);
-    bNum.push_back(3);
-    bNum.push_back(1);
     number *b = new number(bNum, 4, 10);
 
     number res = add(a, b);
+
+    int decPoint = res.num.size() - res.basePower;
+    for(int i = res.num.size() - 1; i >= 0; i--) {
+        if(i == decPoint) printf(". ");
+        printf("%d ",res.num[i]);
+    }
+    printf("\n");
 }
