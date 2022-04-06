@@ -50,16 +50,31 @@ number subtract(number *x, number *y)
             newX.num.push_back(0);
         newX.basePower = y->basePower;
     } 
-    
+    //012.3456
     //165.2547
     //036.3670
 
     res.base = x->base;
     res.basePower = newX.basePower;
     int temp, flag, carry;
-    for(int i = newX.num.size() - 1; i >= 0; i++) {
-        if(newX.num[i] < newY.num[i]) {
-            
+    for(int i = 0; i < newX.num.size(); i++)
+        res.num.push_back(0);
+    for(int i = newX.num.size() - 1; i >= 0; i--) {
+        printf("newX = %d\tnewY = %d\n",newX.num[i], newY.num[i]);
+        if(newX.num[i] < newY.num[i]) { //if carry is required to progress
+            temp = newX.num[i] + newX.base - newY.num[i] + carry;
+            carry = -1;   
         }
+        else if(carry == -1){
+            temp = newX.num[i] - 1 - newY.num[i];
+            carry = 0;
+        }
+        else {
+            temp = newX.num[i] - newY.num[i];
+            carry = 0;
+        }
+        res.num[i] = temp;
     }
+
+    return res;
 }

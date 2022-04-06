@@ -43,10 +43,29 @@ int main()
     bNum.push_back(7);
     number *b = new number(bNum, 4, 10);
 
-    number res = add(a, b);
+    vector<int> cNum;
+    cNum.push_back(4);
+    cNum.push_back(6);
+    cNum.push_back(3);
+    cNum.push_back(6);
+    cNum.push_back(7);
+    number *c = new number(cNum, 3, 10);
+
+    vector<int> dNum;
+    dNum.push_back(3);
+    dNum.push_back(7);
+    dNum.push_back(1);
+    dNum.push_back(3);
+    dNum.push_back(4);
+    dNum.push_back(7);
+    number *d = new number(dNum, 4, 10);
+
+    number res1 = add(a, b);
+    number res = subtract(&res1, c);
 
     int decPoint = res.num.size() - res.basePower;
-    for(int i = res.num.size() - 1; i >= 0; i--) {
+    printf("res BasePower = %d\tBase = %d\n", res.basePower, res.base);
+    for(int i = 0; i < res.num.size(); i++) {
         if(i == decPoint) printf(". ");
         printf("%d ",res.num[i]);
     }

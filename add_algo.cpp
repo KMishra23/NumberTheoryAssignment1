@@ -146,6 +146,8 @@ number add(number *x, number *y)
     res.base = x->base;
     res.basePower = newX.basePower;
     int carry = 0, temp, flag = 0;
+    for(int i = 0; i < newX.num.size(); i++)
+        res.num.push_back(0);
     for(int i = newX.num.size() - 1; i >= 0; i--)
     {
         //printf("newX = %d\tnewY = %d\n",newX.num[i], newY.num[i]);
@@ -157,7 +159,7 @@ number add(number *x, number *y)
         else 
             flag = 0;
         
-        res.num.push_back(temp + carry);
+        res.num[i] = (temp + carry);
         
         if(flag == 1) carry = 1;
         else carry = 0; 
