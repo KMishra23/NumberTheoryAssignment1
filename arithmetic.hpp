@@ -17,8 +17,10 @@ class number
         number(long double x, int base);
         number();
         ~number();
+        void removeZeroes();
         void removeDecZeroes();
         void truncateDecimal(int precision);
+        static void makeLengthEqual(number *x, number *y);
 
         vector<int> num;
         int basePower;

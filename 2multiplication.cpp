@@ -127,21 +127,19 @@ void remove_zeroes(number *x)
 number karatsuba(number *x, number *y)
 {
 //    q++;
-    //cout<<"entering karatsuba..."<<endl;
     if(x->num.size() == 1 && y->num.size() == 1)
     {
-        //cout<<x->num[0] * y->num[0]<<endl;
-        //cout<<"base case"<<endl;
+        // cout<<x->num[0] * y->num[0]<<endl;
+        cout<<"base case"<<endl;
         number ret;
         multiply(x, y, &ret);
         ret.base = x->base;
-        //print(ret.num);
+        // print(ret.num);
         return ret;
     }
 
     int m = min(x->num.size(), y->num.size());
     int k = floor(m/2);
-    //cout<<"m : "<<m<<endl;
 
     number Xr, Yr, Xl, Yl;
 
@@ -155,10 +153,10 @@ number karatsuba(number *x, number *y)
     copy(Yl.num, y->num, k, y->num.size());
 //    print2(&Yl); cout<<"size Yl:"<<Yl.num.size()<<endl;
 
-    //print2(&Xr); cout<<" ---Xr:"<<endl;
-    //print2(&Xl); cout<<" ---Xl:"<<endl;
-   // print2(&Yr); cout<<" ---Yr:"<<endl;
-    //print2(&Yl); cout<<" ---Yl:"<<endl;
+//     print2(&Xr); cout<<" ---Xr:"<<endl;
+//     print2(&Xl); cout<<" ---Xl:"<<endl;
+//    print2(&Yr); cout<<" ---Yr:"<<endl;
+//     print2(&Yl); cout<<" ---Yl:"<<endl;
 
     //cout<<endl;
 
@@ -172,15 +170,15 @@ number karatsuba(number *x, number *y)
     set_number(&Xl, &Yl);
     set_number(&Xr, &Yr);
 
-    //print2(&Xr); cout<<" ---Xr:"<<endl;
-    //print2(&Xl); cout<<" ---Xl:"<<endl;
-    //print2(&Yr); cout<<" ---Yr:"<<endl;
-    //print2(&Yl); cout<<" ---Yl:"<<endl;
+    // print2(&Xr); cout<<" ---Xr:"<<endl;
+    // print2(&Xl); cout<<" ---Xl:"<<endl;
+    // print2(&Yr); cout<<" ---Yr:"<<endl;
+    // print2(&Yl); cout<<" ---Yl:"<<endl;
 
     Zl = karatsuba(&Xl, &Yl);
-    //cout<<"Zl : "; print2(&Zl); cout<<endl;
+ //   cout<<"Zl : "; print2(&Zl); cout<<endl;
     Zr = karatsuba(&Xr, &Yr);
-    //cout<<"Zr : "; print2(&Zr); cout<<endl;
+  //  cout<<"Zr : "; print2(&Zr); cout<<endl;
 
     Xr.base = 10;
     Yr.base = 10;
@@ -204,15 +202,15 @@ number karatsuba(number *x, number *y)
 //    }
     
     set_number(&Xrl, &Yrl);
-//    print2(&Xrl);
-//    print2(&Yrl);
+   print2(&Xrl);
+   print2(&Yrl);
 
-    //cout<<"Xrl : "; print2(&Xrl); cout<<endl;
-    //cout<<"Yrl : "; print2(&Yrl); cout<<endl;
+    // cout<<"Xrl : "; print2(&Xrl); cout<<endl;
+    // cout<<"Yrl : "; print2(&Yrl); cout<<endl;
 
 
     Zrl = karatsuba(&Xrl, &Yrl);
-    //cout<<"Zrl : "; print2(&Zrl); cout<<endl;
+    cout<<"Zrl : "; print2(&Zrl); cout<<endl;
 
 //    remove_zeroes(&Zr);
 //    remove_zeroes(&Zl);
@@ -231,8 +229,11 @@ number karatsuba(number *x, number *y)
     Zr_plus_Zl.basePower = 0;    
     number Zrl_minus = subtract(&Zrl, &Zr_plus_Zl);///////////////////////////////////////////////////////Zrl - Zr_plus_Zl
 
-    //cout<<"Zrl_minus"<<endl;
-    //print2(&Zrl_minus);
+    cout<<"m : "<<m<<endl;
+    cout<<"Zrl_minus"<<endl;
+    print2(&Zrl_minus);
+    cout<<"Zr_plus_Zl"<<endl;
+    print2(&Zr_plus_Zl);
 
     for(auto i = 0; i < m; ++i)
     {
@@ -247,58 +248,59 @@ number karatsuba(number *x, number *y)
     number result1 = add(&Zr, &Zrl_minus);
     number result = add(&result1, &Zl);
 
-    //print2(&result);
+    cout<<"result : ";
+    print2(&result);
     remove_zeroes(&result);
-    //cout<<"result : ";
+    cout<<"entering karatsuba..."<<endl;
     return result;
 }
 
-// int main()
-// {
-//     vector<int> a = {8,0,0,0,0,0,6,1,8,6,5,2,1,4,2,2,1};
-//     vector<int> b = {6,4,9,5,9,9,8,0,0,0,0,0,4,0,1,5,2,6,7,0,2,2,1}; 
+int main()
+{
+    vector<int> a = {2 ,8, 2, 8, 4, 3, 1, 3, 7 ,2, 5, 4, 9, 0, 1, 9, 6, 0, 7 ,8 ,4 ,3 ,1 ,3 ,7 ,2 ,5 ,4 ,9 ,0 ,1 ,9 ,6 ,0 ,7 ,8 ,4};
+    vector<int> b = {5}; 
 
-//     number x, y;
+    number x, y;
 
-//     copy(x.num, a, 0, a.size());
-//     copy(y.num, b, 0, b.size());
-//     cout<<"copied"<<endl;
+    copy(x.num, a, 0, a.size());
+    copy(y.num, b, 0, b.size());
+    cout<<"copied"<<endl;
 
-// //    x.num.push_back(1);
-// //    x.num.push_back(3);
-// //    y.num.push_back(4);
-// //    y.num.push_back(0);
+//    x.num.push_back(1);
+//    x.num.push_back(3);
+//    y.num.push_back(4);
+//    y.num.push_back(0);
 
-//     x.base = 10;
-//     y.base = 10;
-//     x.basePower = 0;
-//     y.basePower = 0;
+    x.base = 10;
+    y.base = 10;
+    x.basePower = 0;
+    y.basePower = 0;
 
-//     prind2(&x);
-//     prind2(&y);
+    prind2(&x);
+    prind2(&y);
 
-//     number pee = add(&x, &y);
-//     prind(pee);
+    number pee = add(&x, &y);
+    prind(pee);
 
-//     set_number(&x, &y);
+    set_number(&x, &y);
 
-//     print2(&x);
-//     print2(&y);
+    print2(&x);
+    print2(&y);
 
-// //    number test = subtract(&x, &y);
-// //    print2(&test);
-// //    remove_zeroes(&test);
-// //    print2(&test);
-
-
-//     number z = karatsuba(&x, &y);
+//    number test = subtract(&x, &y);
+//    print2(&test);
+//    remove_zeroes(&test);
+//    print2(&test);
 
 
-//     remove_zeroes(&x);
-//     remove_zeroes(&y);
+    number z = karatsuba(&x, &y);
 
-// //    print(x.num);
-// //    print(y.num);
 
-//     print2(&z);
-// }
+    remove_zeroes(&x);
+    remove_zeroes(&y);
+
+//    print(x.num);
+//    print(y.num);
+
+    print2(&z);
+}

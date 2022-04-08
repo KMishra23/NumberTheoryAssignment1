@@ -5,44 +5,31 @@
 number divide(number *x, number *y, int precision)
 {   
     int base = x->base;
-    x->removeDecZeroes();
-    y->removeDecZeroes();
-    number newX = *x;
-    number newY = *y;
-    number::makeLengthEqual(&newX, &newY);
-    // printf("%d %d\n", newX.base, newX.basePower);
-    // for(int i = 0; i < newX.num.size(); i++) {
-    //     printf("%d ", newX.num[i]);
-    // }
-    // printf("\n");
-    // printf("%d %d\n", newY.base, newY.basePower);
-    // for(int i = 0; i < newY.num.size(); i++) {
-    //     printf("%d ", newY.num[i]);
-    // }
-    // printf("\n");
+    number *newX = x;
+    number *newY = y;
+    number::makeLengthEqual(newX, newY);
+    
+    int finalPower = x->basePower - y->basePower;
     
     int t = precision;
-    while(t--) newX.num.push_back(0);
-    newX.basePower += precision;
+    while(t--) newX->num.push_back(0);
+    newX->basePower += precision;
     
-    int k = newX.num.size();
-    int l = newY.num.size();
+    int k = newX->num.size();
+    int l = newY->num.size();
     int m = k - l + 1;
-    //printf("k: %d \t l: %d\t\n",k,l);
 
-    reverse(newX.num.begin(), newX.num.end());
-    reverse(newY.num.begin(), newY.num.end());
+    reverse(newX->num.begin(), newX->num.end());
+    reverse(newY->num.begin(), newY->num.end());
 
-    int finalPower = newX.basePower - newY.basePower;
-
-    // printf("%d %d\n", newX.base, newX.basePower);
-    // for(int i = 0; i < newX.num.size(); i++) {
-    //     printf("%d ", newX.num[i]);
+    // printf("%d %d\n", newX->base, newX->basePower);
+    // for(int i = 0; i < newX->num.size(); i++) {
+    //     printf("%d ", newX->num[i]);
     // }
     // printf("\n");
-    // printf("%d %d\n", newY.base, newY.basePower);
-    // for(int i = 0; i < newY.num.size(); i++) {
-    //     printf("%d ", newY.num[i]);
+    // printf("%d %d\n", newY->base, newY->basePower);
+    // for(int i = 0; i < newY->num.size(); i++) {
+    //     printf("%d ", newY->num[i]);
     // }
     // printf("\n");
     // if(k < l) { //x is smaller than y
@@ -67,7 +54,7 @@ number divide(number *x, number *y, int precision)
     // newX = {4, 2}, newY = {6}
     //rem = {4, 2, 0}
    
-    vector<int> rNum(newX.num.begin(), newX.num.end());
+    vector<int> rNum(newX->num.begin(), newX->num.end());
     number *rem = new number(rNum, 0, base);
     rem->num.push_back(0);
     
@@ -81,12 +68,12 @@ number divide(number *x, number *y, int precision)
     number *quo = new number(qNum, finalPower, base);
 
     for(lli i = k-l; i >= 0; i--) {
-        quo->num[i] = floor((float)((rem->num[i+l] * base + rem->num[i+l-1]) / (newY.num[l-1])));
+        quo->num[i] = floor((float)((rem->num[i+l] * base + rem->num[i+l-1]) / (newY->num[l-1])));
         if(quo->num[i] >= base) 
             quo->num[i] = base - 1;     
         int carry = 0;
         for(lli j = 0; j <= l-1; j++) {
-            lli temp = rem->num[i+j] - quo->num[i] * newY.num[j] + carry;
+            lli temp = rem->num[i+j] - quo->num[i] * newY->num[j] + carry;
             if(temp < 0) {
                 if(temp % base == 0) {
                     carry = temp / base;
@@ -100,13 +87,12 @@ number divide(number *x, number *y, int precision)
             else {
                 carry = temp / base;
                 rem->num[i+j] = temp%base;
-            } 
-        }  
+            }   
         rem->num[i+l] += carry;
         while(rem->num[i+l] < 0) {
             carry = 0;
             for(lli j = 0; j <= l-1; j++) {
-                lli temp = rem->num[i+j] + newY.num[j] + carry;
+                lli temp = rem->num[i+j] + newY->num[j] + carry;
                 if(temp < 0) {
                     // carry = temp / x->base;
                     // rem->num[i+j] = 0;
@@ -127,7 +113,7 @@ number divide(number *x, number *y, int precision)
             rem->num[i+l] += carry;
             quo->num[i]--;
         }
-        
+        }
     }
      
 
@@ -194,7 +180,6 @@ number divide(number *x, number *y, int precision)
     // free(&rem);
 
     reverse(quo->num.begin(), quo->num.end());
-    quo->basePower = finalPower;
-    quo->removeDecZeroes();
+    quo->basePower = finalPower + precision;
     return *quo;
 }

@@ -43,11 +43,13 @@ int main()
     // vector<int> dNum = {4,1,5,2,7,4,5,6,2,6,1};
     // number *d = new number(dNum, 0, 10);
 
-    vector<int> cNum = {2};
+    vector<int> cNum = {6,5};
     number *c = new number(cNum, 0, 10);
 
-    vector<int> dNum = {1,4,1,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,5};
-    number *d = new number(dNum, 20, 10);
+    vector<int> dNum = {3,6};
+    number *d = new number(dNum, 0, 10);
+
+    //number temp = *d;
 
     // vector<int> fNum = {3};
     // number *f = new number(fNum, 0, 10);
@@ -55,10 +57,11 @@ int main()
     // number temp;
     // temp = *f;
 
-    //number res = add(a, b);
+    // number res = add(c, d);
     //number res = subtract(&res1, c);
 
-    //number res = divide(c, d, 1000);
+    //number res = divide(d, c, 10);
+    // res.removeZeroes();
 
     // printf("Num c basePower: %d\t",c->basePower);
     // for(int i = 0; i < c->num.size(); i++) {
@@ -79,90 +82,9 @@ int main()
     // res.basePower = c->basePower + d->basePower;
 
     vector<int> eNum = {2};
-    number *r = new number(eNum, 0, 10);
-    // number res = sqrt(e, 20);
-    number x1, x2;
-    x1 = *r;
-
-    vector<int> hNum = {5};
-    number *half = new number(hNum, 1, r->base);
-
-    //number temp = divide(r, &x1, precision);
-    number temp;
-    int precision = 10;
-    int t = 5;
-    while(t--) {
-        
-            printf("\n\t-----Iteration Number: %d-----\n\n ",5-t);
-
-            printf("start\n");
-            printf("Num X1 basePower: %d\tBase: %d\t val: ",x1.basePower, x1.base);
-            for(int i = 0; i < x1.num.size(); i++) {
-                if(i == x1.num.size()-x1.basePower) printf(".");
-                printf("%d",x1.num[i]);
-            }
-            printf("\n");
-            printf("Num r basePower: %d\tBase: %d\t val: ",r->basePower, r->base);
-            for(int i = 0; i < r->num.size(); i++) {
-                if(i == r->num.size()-r->basePower) printf(".");
-                printf("%d",r->num[i]);
-            }
-            printf("\n");
-            
-
-        temp = divide(r, &x1, precision);
-        temp.removeDecZeroes();
-        temp.truncateDecimal(precision);
-            
-            printf("here1\n");
-            printf("Divide basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
-            for(int i = 0; i < temp.num.size(); i++) {
-                if(i == temp.num.size()-temp.basePower) printf(".");
-                printf("%d",temp.num[i]);
-            }
-            printf("\n");
-            
-
-        temp = add(&temp, &x1);
-        temp.removeDecZeroes();
-        temp.truncateDecimal(precision);
-            
-            printf("here2\n");
-            printf("Add basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
-            for(int i = 0; i < temp.num.size(); i++) {
-                if(i == temp.num.size()-temp.basePower) printf(".");
-                printf("%d",temp.num[i]);
-            }
-            printf("\n");
-            
-        number temp2;
-        set_number(&temp, half);
-        temp2 = karatsuba(half, &temp);
-         
-            // printf("temp 2Multiply basePower: %d\tBase: %d\t val: ",temp2.basePower, temp2.base);
-            // for(int i = 0; i < temp2.num.size(); i++) {
-            //     if(i == temp2.num.size()-temp2.basePower) printf(".");
-            //     printf("%d",temp2.num[i]);
-            // }
-            // printf("\n");
-
-        temp2.basePower = temp.basePower + half->basePower;
-        printf("temp2 Base: %d\n",temp2.base);
-        temp = temp2;
-        temp.truncateDecimal(precision);
-        temp.removeDecZeroes();
-
-            printf("here3\n");
-            printf("Multiply basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
-            for(int i = 0; i < temp.num.size(); i++) {
-                if(i == temp.num.size()-temp.basePower) printf(".");
-                printf("%d",temp.num[i]);
-            }
-            printf("\n");
-
-        x1 = temp;
-    }
-    number res = temp;
+    number *e = new number(eNum, 0, 10);
+    number res = sqrt(e, 36);
+    
 
     int decPoint = res.num.size() - res.basePower;
     printf("res BasePower = %d\tBase = %d\n", res.basePower, res.base);

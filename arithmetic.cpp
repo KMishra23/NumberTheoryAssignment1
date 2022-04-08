@@ -18,21 +18,63 @@ number::number()
 number::~number()
 {}
 
-void number::removeDecZeroes() 
+void number::removeZeroes() 
 {
-    //printf("BasePower: %d\t Size: %d\n",t->basePower, t->num.size());
-    for(int i = num.size()-1; i >= num.size()-basePower; i--) {
-        if(num[i] != 0) {
-            break;
+    int flag = 0;
+    for(int i=0; i < num.size(); i++)
+    {
+        if(num[i]!=0)
+        {
+            flag = 1;
         }
+    }
+    if(flag != 0)
+    {
+        while(num[0]==0)
+        {
+            vector<int>::iterator it;
+            it = num.begin();
+            num.erase(it);
+        }
+    }    
+}
+
+
+void number::truncateDecimal(int precision) {
+    if(precision >= basePower) return;
+    int decStartIndex = num.size()-basePower;
+    int decPrecisionReqd = decStartIndex + precision;
+    for(int i = decPrecisionReqd; i < num.size(); i++) {
         num.pop_back();
         basePower--;
     }
 }
 
+void number::makeLengthEqual(number *x, number *y) {
+    int diff = x->num.size() - y->num.size();
+    if(diff > 0) {
+        for(int i = 0; i < diff; i++) {
+            y->num.push_back(0);
+            y->basePower++;
+        }
+    }
+    else {
+        diff = -diff;
+        for(int i = 0; i < diff; i++) {
+            x->num.push_back(0);
+            x->basePower++;
+        }
+    }
+}
 
-void number::truncateDecimal(int precision) {
-    for(int i = num.size()-1; i >= num.size() - basePower + precision; i--) {
+void number::removeDecZeroes() {
+    int t = num.size()-1;
+    for(int i = t; i >= 0; i--) {
+        if(num[i] != 0) {
+            break;
+        }
+        if(basePower == 0) break;
+        basePower--;
         num.pop_back();
     }
 }

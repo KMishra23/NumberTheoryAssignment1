@@ -11,48 +11,48 @@ number sqrt(number *r, int precision)
     //number temp = divide(r, &x1, precision);
     number temp;
 
-    int t = 5;
+    int t = log(precision*8);
     while(t--) {
 
-            printf("\n\t-----Iteration Number: %d-----\n\n ",5-t);
+            printf("\n\t-----Iteration Number: %d-----\n\n ",int(log(precision*8))-t);
 
             printf("start\n");
             printf("Num X1 basePower: %d\tBase: %d\t val: ",x1.basePower, x1.base);
             for(int i = 0; i < x1.num.size(); i++) {
                 if(i == x1.num.size()-x1.basePower) printf(".");
-                printf("%d",x1.num[i]);
+                printf("%d ",x1.num[i]);
             }
             printf("\n");
             printf("Num r basePower: %d\tBase: %d\t val: ",r->basePower, r->base);
             for(int i = 0; i < r->num.size(); i++) {
                 if(i == r->num.size()-r->basePower) printf(".");
-                printf("%d",r->num[i]);
+                printf("%d ",r->num[i]);
             }
             printf("\n");
             
 
         temp = divide(r, &x1, precision);
-        temp.removeDecZeroes();
+        //temp.removeDecZeroes();
         //temp.truncateDecimal(precision);
             
             printf("here1\n");
             printf("Divide basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
             for(int i = 0; i < temp.num.size(); i++) {
                 if(i == temp.num.size()-temp.basePower) printf(".");
-                printf("%d",temp.num[i]);
+                printf("%d ",temp.num[i]);
             }
             printf("\n");
             
 
         temp = add(&temp, &x1);
-        temp.removeDecZeroes();
+        //temp.removeDecZeroes();
         //temp.truncateDecimal(precision);
             
             printf("here2\n");
             printf("Add basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
             for(int i = 0; i < temp.num.size(); i++) {
                 if(i == temp.num.size()-temp.basePower) printf(".");
-                printf("%d",temp.num[i]);
+                printf("%d ",temp.num[i]);
             }
             printf("\n");
             
@@ -68,19 +68,20 @@ number sqrt(number *r, int precision)
             // printf("\n");
 
         temp2.basePower = temp.basePower + half->basePower;
-        printf("temp2 Base: %d\n",temp2.base);
+        //printf("temp2 Base: %d\n",temp2.base);
         temp = temp2;
+        temp.truncateDecimal(precision);
         //temp.truncateDecimal(precision);
-        temp.removeDecZeroes();
+        //temp.removeDecZeroes();
 
             printf("here3\n");
             printf("Multiply basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
             for(int i = 0; i < temp.num.size(); i++) {
                 if(i == temp.num.size()-temp.basePower) printf(".");
-                printf("%d",temp.num[i]);
+                printf("%d ",temp.num[i]);
             }
             printf("\n");
-
+        
         x1 = temp;
     }
 
