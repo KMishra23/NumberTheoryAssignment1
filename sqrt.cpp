@@ -1,6 +1,6 @@
 #include "arithmetic.hpp"
 
-number sqrt(number *r, int precision) 
+number sqrt1(number *r, int precision) 
 {
     number x1, x2;
     x1 = *r;
@@ -11,50 +11,50 @@ number sqrt(number *r, int precision)
     //number temp = divide(r, &x1, precision);
     number temp;
 
-    int t = log(precision*8);
+    int t = ceil(precision * log2(10))/r->base;
     while(t--) {
 
-            printf("\n\t-----Iteration Number: %d-----\n\n ",int(log(precision*8))-t);
+            // printf("\n\t-----Iteration Number: %d-----\n\n ",int(log(precision*8))-t);
 
-            printf("start\n");
-            printf("Num X1 basePower: %d\tBase: %d\t val: ",x1.basePower, x1.base);
-            for(int i = 0; i < x1.num.size(); i++) {
-                if(i == x1.num.size()-x1.basePower) printf(".");
-                printf("%d ",x1.num[i]);
-            }
-            printf("\n");
-            printf("Num r basePower: %d\tBase: %d\t val: ",r->basePower, r->base);
-            for(int i = 0; i < r->num.size(); i++) {
-                if(i == r->num.size()-r->basePower) printf(".");
-                printf("%d ",r->num[i]);
-            }
-            printf("\n");
+            // printf("start\n");
+            // printf("Num X1 basePower: %d\tBase: %d\t val: ",x1.basePower, x1.base);
+            // for(int i = 0; i < x1.num.size(); i++) {
+            //     if(i == x1.num.size()-x1.basePower) printf(".");
+            //     printf("%d ",x1.num[i]);
+            // }
+            // printf("\n");
+            // printf("Num r basePower: %d\tBase: %d\t val: ",r->basePower, r->base);
+            // for(int i = 0; i < r->num.size(); i++) {
+            //     if(i == r->num.size()-r->basePower) printf(".");
+            //     printf("%d ",r->num[i]);
+            // }
+            // printf("\n");
             
 
         temp = divide(r, &x1, precision);
         //temp.removeDecZeroes();
         //temp.truncateDecimal(precision);
             
-            printf("here1\n");
-            printf("Divide basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
-            for(int i = 0; i < temp.num.size(); i++) {
-                if(i == temp.num.size()-temp.basePower) printf(".");
-                printf("%d ",temp.num[i]);
-            }
-            printf("\n");
+            // printf("here1\n");
+            // printf("Divide basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
+            // for(int i = 0; i < temp.num.size(); i++) {
+            //     if(i == temp.num.size()-temp.basePower) printf(".");
+            //     printf("%d ",temp.num[i]);
+            // }
+            // printf("\n");
             
 
         temp = add(&temp, &x1);
         //temp.removeDecZeroes();
         //temp.truncateDecimal(precision);
             
-            printf("here2\n");
-            printf("Add basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
-            for(int i = 0; i < temp.num.size(); i++) {
-                if(i == temp.num.size()-temp.basePower) printf(".");
-                printf("%d ",temp.num[i]);
-            }
-            printf("\n");
+            // printf("here2\n");
+            // printf("Add basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
+            // for(int i = 0; i < temp.num.size(); i++) {
+            //     if(i == temp.num.size()-temp.basePower) printf(".");
+            //     printf("%d ",temp.num[i]);
+            // }
+            // printf("\n");
             
         number temp2;
         set_number(&temp, half);
@@ -74,13 +74,13 @@ number sqrt(number *r, int precision)
         //temp.truncateDecimal(precision);
         //temp.removeDecZeroes();
 
-            printf("here3\n");
-            printf("Multiply basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
-            for(int i = 0; i < temp.num.size(); i++) {
-                if(i == temp.num.size()-temp.basePower) printf(".");
-                printf("%d ",temp.num[i]);
-            }
-            printf("\n");
+            // printf("here3\n");
+            // printf("Multiply basePower: %d\tBase: %d\t val: ",temp.basePower, temp.base);
+            // for(int i = 0; i < temp.num.size(); i++) {
+            //     if(i == temp.num.size()-temp.basePower) printf(".");
+            //     printf("%d ",temp.num[i]);
+            // }
+            // printf("\n");
         
         x1 = temp;
     }

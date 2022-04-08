@@ -25,29 +25,29 @@ int main()
     //     p = pnew;
     // }
 
-    vector<int> aNum = {3,4,1,4,5,8,3,3,7,1,9,4,1,8,3,0,3,0,2,4,3,6,2,6,9,3,1,8,0,4,3,2,7,9,3,2,6,9,4,2,5,8,9,4,2,4,6,8,8,5,4,7,9,4,8};
-    number *a = new number(aNum, 0, 10);
+    // vector<int> aNum = {3,4,1,4,5,8,3,3,7,1,9,4,1,8,3,0,3,0,2,4,3,6,2,6,9,3,1,8,0,4,3,2,7,9,3,2,6,9,4,2,5,8,9,4,2,4,6,8,8,5,4,7,9,4,8};
+    // number *a = new number(aNum, 0, 10);
 
-    vector<int> bNum;
-    bNum.push_back(3);
-    bNum.push_back(7);
-    bNum.push_back(1);
-    bNum.push_back(3);
-    bNum.push_back(4);
-    bNum.push_back(7);
-    number *b = new number(bNum, 4, 10);
+    // vector<int> bNum;
+    // bNum.push_back(3);
+    // bNum.push_back(7);
+    // bNum.push_back(1);
+    // bNum.push_back(3);
+    // bNum.push_back(4);
+    // bNum.push_back(7);
+    // number *b = new number(bNum, 4, 10);
 
-    // vector<int> cNum = {2,4,1,7,3,8,3,5,1,8,3,9,2};
+    // vector<int> cNum = {1,3,4};
     // number *c = new number(cNum, 0, 10);
 
-    // vector<int> dNum = {4,1,5,2,7,4,5,6,2,6,1};
+    // vector<int> dNum = {1,3,0,0};
+    // number *d = new number(dNum, 2, 10);
+
+    // vector<int> cNum = {2 ,8, 2, 8, 4, 3, 1, 3, 7 ,2, 5, 4, 9, 0, 1, 9, 6, 0, 7 ,8 ,4 ,3 ,1 ,3 ,7 ,2 ,5 ,4 ,9 ,0 ,1 ,9 ,6 ,0 ,7 ,8 ,4};
+    // number *c = new number(cNum, 0, 10);
+
+    // vector<int> dNum = {5};
     // number *d = new number(dNum, 0, 10);
-
-    vector<int> cNum = {6,5};
-    number *c = new number(cNum, 0, 10);
-
-    vector<int> dNum = {3,6};
-    number *d = new number(dNum, 0, 10);
 
     //number temp = *d;
 
@@ -58,10 +58,10 @@ int main()
     // temp = *f;
 
     // number res = add(c, d);
-    //number res = subtract(&res1, c);
+    // number res = subtract(c, d);
 
-    //number res = divide(d, c, 10);
-    // res.removeZeroes();
+    //number res = divide(c, d, 10);
+    //res.removeZeroes();
 
     // printf("Num c basePower: %d\t",c->basePower);
     // for(int i = 0; i < c->num.size(); i++) {
@@ -80,17 +80,29 @@ int main()
     // set_number(d, c);
     // res = karatsuba(d, c);
     // res.basePower = c->basePower + d->basePower;
+    
+    number res;
+    int a,b,c;
+    cin >> a >> b >> c;
+    if(a == 1) {
+        res = piEst(b, 10);
+    } 
 
-    vector<int> eNum = {2};
-    number *e = new number(eNum, 0, 10);
-    number res = sqrt(e, 36);
+    else if (a == 2) {
+        //c = pow(2,c);
+        vector<int> eNum = {2};
+        number *e = new number(eNum, 0, 10);
+        res = sqrt1(e, b);
+    }
+
+    
     
 
     int decPoint = res.num.size() - res.basePower;
-    printf("res BasePower = %d\tBase = %d\n", res.basePower, res.base);
+    // printf("res BasePower = %d\tBase = %d\n", res.basePower, res.base);
     for(int i = 0; i < res.num.size(); i++) {
-        if(i == decPoint) printf(". ");
-        printf("%d ",res.num[i]);
+        if(i == decPoint) printf(".");
+        printf("%d",res.num[i]);
     }
     printf("\n");
 }

@@ -29,21 +29,17 @@ number divide(number *x, number *y, int precision)
     int l = newY.num.size();
     int m = k - l + 1;
     //printf("k: %d \t l: %d\t\n",k,l);
-
+    int finalPower = newX.basePower - newY.basePower;
     reverse(newX.num.begin(), newX.num.end());
     reverse(newY.num.begin(), newY.num.end());
 
-    int finalPower = newX.basePower - newY.basePower;
+    
 
-    // printf("%d %d\n", newX.base, newX.basePower);
-    // for(int i = 0; i < newX.num.size(); i++) {
-    //     printf("%d ", newX.num[i]);
-    // }
+    // printf("NEWX ");
+    // newX.print();
     // printf("\n");
-    // printf("%d %d\n", newY.base, newY.basePower);
-    // for(int i = 0; i < newY.num.size(); i++) {
-    //     printf("%d ", newY.num[i]);
-    // }
+    // printf("NEWY ");
+    // newY.print();
     // printf("\n");
     // if(k < l) { //x is smaller than y
     //     quo.num = x->num;
@@ -71,10 +67,8 @@ number divide(number *x, number *y, int precision)
     number *rem = new number(rNum, 0, base);
     rem->num.push_back(0);
     
-    // printf("%d %d\n", rem->base, rem->basePower);
-    // for(int i = 0; i < rem->num.size(); i++) {
-    //     printf("%d ", rem->num[i]);
-    // }
+    // printf("REM ");
+    // rem->print();
     // printf("\n");
 
     vector<int> qNum(m);

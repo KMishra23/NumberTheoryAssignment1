@@ -60,7 +60,7 @@ number subtract(number *x, number *y)
     for(int i = 0; i < newX.num.size(); i++)
         res.num.push_back(0);
     for(int i = newX.num.size() - 1; i >= 0; i--) {
-        //printf("newX = %d\tnewY = %d\n",newX.num[i], newY.num[i]);
+        // printf("newX = %d\tnewY = %d\n",newX.num[i], newY.num[i]);
         if(newX.num[i] < newY.num[i]) { //if carry is required to progress
             temp = newX.num[i] + newX.base - newY.num[i] + carry;
             carry = -1;   
@@ -73,7 +73,21 @@ number subtract(number *x, number *y)
             temp = newX.num[i] - newY.num[i];
             carry = 0;
         }
+        if(temp == -1) {
+            temp = 9;
+            carry = -1;
+        }
         res.num[i] = temp;
+
+        // if(newX.num[i] < newY.num[i] && carry == 0) { //carry reqd and no current carry in progress
+        //     newX.num[i-1]--;
+        //     temp = newX.num[i] + newX.base - newY.num[i];
+        //     carry = -1;
+        // }
+        // if(newX.num[i] < newY.num[i] && carry == -1) {
+        //     newX.num[i-1]--;
+        //     temp = newX.num[i] + newX.base - newY.num[i];
+        // }
     }
 
     return res;

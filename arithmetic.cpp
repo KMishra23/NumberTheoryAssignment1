@@ -78,3 +78,12 @@ void number::removeDecZeroes() {
         num.pop_back();
     }
 }
+
+void number::print() {
+    printf("BasePower: %d\tBase: %d\t Val: ",basePower, base);
+    for(int i = 0; i < num.size(); i++) {
+        if(i == num.size() - basePower) printf(".");
+        printf("%d",num[i]);
+    }
+    printf("\n");
+}
