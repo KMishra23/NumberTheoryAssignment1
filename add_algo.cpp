@@ -164,6 +164,9 @@ number add(number *x, number *y)
         if(flag == 1) carry = 1;
         else carry = 0; 
     }
+    if(carry == 1) {
+        res.num.insert(res.num.begin(), 1);
+    }
 
     return res;
     

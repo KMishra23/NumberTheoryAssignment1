@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <vector>
 #include <math.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -16,6 +17,8 @@ class number
         number(long double x, int base);
         number();
         ~number();
+        void removeDecZeroes();
+        void truncateDecimal(int precision);
 
         vector<int> num;
         int basePower;
@@ -25,9 +28,11 @@ class number
 number convertToBase256(long double x);
 number add(number *x, number *y);
 number subtract(number *x, number *y);
-number multiply(number *x, number *y);
-number divide(number *x, number *y);
-number squrt(number *x);
+number divide(number *x, number *y, int precision);
+number sqrt(number *x, int precision);
+number karatsuba(number *x, number *y);
+void set_number(number *x, number *y);
+void remove_zeroes(number *x);
 
 
 #endif

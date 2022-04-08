@@ -56,11 +56,11 @@ number subtract(number *x, number *y)
 
     res.base = x->base;
     res.basePower = newX.basePower;
-    int temp, flag, carry;
+    int temp, flag, carry = 0;
     for(int i = 0; i < newX.num.size(); i++)
         res.num.push_back(0);
     for(int i = newX.num.size() - 1; i >= 0; i--) {
-        printf("newX = %d\tnewY = %d\n",newX.num[i], newY.num[i]);
+        //printf("newX = %d\tnewY = %d\n",newX.num[i], newY.num[i]);
         if(newX.num[i] < newY.num[i]) { //if carry is required to progress
             temp = newX.num[i] + newX.base - newY.num[i] + carry;
             carry = -1;   
